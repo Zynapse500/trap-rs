@@ -10,6 +10,7 @@ mod matrix4 {
         col_mat4_mul,
         mat4_id,
         col_mat4_transform,
+        mat4_transposed
     };
 
     #[derive(Copy, Clone)]
@@ -62,6 +63,14 @@ mod matrix4 {
         pub fn scale(self, amount: Vector3) -> Matrix4 {
             let scaling = Matrix4::scaled(amount);
             self * scaling
+        }
+
+
+        /// Return the transpose of a matrix
+        pub fn transpose(self) -> Matrix4 {
+            Matrix4 {
+                data: mat4_transposed(self.data)
+            }
         }
     }
 
