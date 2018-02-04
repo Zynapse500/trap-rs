@@ -47,10 +47,10 @@ mod matrix4 {
 
 
         pub fn orthographic(left: f64, right: f64, top: f64, bottom: f64, near: f64, far: f64) -> Matrix4 {
-            Matrix4::translated(Vector3::new(
-                -(left+right)/2.0, -(top+bottom)/2.0, -(far+near)/2.0
-            )).scale(Vector3::new(
+            Matrix4::scaled(Vector3::new(
                 2.0 / (right - left), 2.0 / (top-bottom), 2.0 / (far - near)
+            )).translate(Vector3::new(
+                -(left+right)/2.0, -(top+bottom)/2.0, -(far+near)/2.0
             ))
         }
 
