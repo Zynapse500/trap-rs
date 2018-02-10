@@ -12,7 +12,7 @@ mod vector2i {
         Neg,
     };
 
-    #[derive(Copy, Clone)]
+    #[derive(Copy, Clone, Hash)]
     #[derive(Debug)]
     pub struct Vector2i {
         pub x: i64,
@@ -203,7 +203,7 @@ mod vector3i {
         Neg,
     };
 
-    #[derive(Copy, Clone)]
+    #[derive(Copy, Clone, Hash)]
     #[derive(Debug)]
     pub struct Vector3i {
         pub x: i64,
@@ -408,7 +408,7 @@ mod vector4i {
         Neg,
     };
 
-    #[derive(Copy, Clone)]
+    #[derive(Copy, Clone, Hash)]
     #[derive(Debug)]
     pub struct Vector4i {
         pub x: i64,
