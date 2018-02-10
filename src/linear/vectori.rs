@@ -1,8 +1,8 @@
-pub use self::Vector2i::Vector2i;
-pub use self::Vector3i::Vector3i;
-pub use self::Vector4i::Vector4i;
+pub use self::vector2i::Vector2i;
+pub use self::vector3i::Vector3i;
+pub use self::vector4i::Vector4i;
 
-mod Vector2i {
+mod vector2i {
     use std::cmp::PartialEq;
     use std::ops::{
         Add, AddAssign,
@@ -193,7 +193,7 @@ mod Vector2i {
     }
 }
 
-mod Vector3i {
+mod vector3i {
     use std::cmp::PartialEq;
     use std::ops::{
         Add, AddAssign,
@@ -398,7 +398,7 @@ mod Vector3i {
     }
 }
 
-mod Vector4i {
+mod vector4i {
     use std::cmp::PartialEq;
     use std::ops::{
         Add, AddAssign,
