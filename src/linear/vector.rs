@@ -206,6 +206,23 @@ mod vector2 {
             Vector2 { x: -self.x, y: -self.y }
         }
     }
+
+
+    // CONVERSION
+    impl From<[f64; 2]> for Vector2 {
+        fn from(array: [f64; 2]) -> Self {
+            Vector2 {
+                x: array[0],
+                y: array[1],
+            }
+        }
+    }
+
+    impl From<Vector2> for [f64; 2] {
+        fn from(vector: Vector2) -> Self {
+            [vector.x, vector.y]
+        }
+    }
 }
 
 mod vector3 {
@@ -424,6 +441,24 @@ mod vector3 {
 
         fn neg(self) -> Self::Output {
             Vector3 { x: -self.x, y: -self.y, z: -self.z }
+        }
+    }
+
+
+    // CONVERSION
+    impl From<[f64; 3]> for Vector3 {
+        fn from(array: [f64; 3]) -> Self {
+            Vector3 {
+                x: array[0],
+                y: array[1],
+                z: array[2],
+            }
+        }
+    }
+
+    impl From<Vector3> for [f64; 3] {
+        fn from(vector: Vector3) -> Self {
+            [vector.x, vector.y, vector.z]
         }
     }
 }
