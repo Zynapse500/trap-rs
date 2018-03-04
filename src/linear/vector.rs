@@ -39,7 +39,7 @@ mod vector2 {
 
         /// Distance between vectors
         pub fn distance(&self, other: Vector2) -> f64 {
-            (*self - *other).len()
+            (*self - other).len()
         }
 
         /// Normalized unit vector
@@ -263,7 +263,7 @@ mod vector3 {
 
         /// Distance between vectors
         pub fn distance(&self, other: Vector3) -> f64 {
-            (*self - *other).len()
+            (*self - other).len()
         }
 
         /// Normalized unit vector
@@ -501,7 +501,7 @@ mod vector4 {
 
         /// Distance between vectors
         pub fn distance(&self, other: Vector4) -> f64 {
-            (*self - *other).len()
+            (*self - other).len()
         }
 
         /// Normalized unit vector
