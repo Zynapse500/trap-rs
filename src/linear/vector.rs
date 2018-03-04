@@ -28,7 +28,7 @@ mod vector2 {
 
 
         /// Dot product
-        pub fn dot(&self, other: &Vector2) -> f64 {
+        pub fn dot(&self, other: Vector2) -> f64 {
             self.x * other.x + self.y * other.y
         }
 
@@ -38,7 +38,7 @@ mod vector2 {
         }
 
         /// Distance between vectors
-        pub fn distance(&self, other: &Vector2) -> f64 {
+        pub fn distance(&self, other: Vector2) -> f64 {
             (*self - *other).len()
         }
 
@@ -252,7 +252,7 @@ mod vector3 {
 
 
         /// Dot product
-        pub fn dot(&self, other: &Vector3) -> f64 {
+        pub fn dot(&self, other: Vector3) -> f64 {
             self.x * other.x + self.y * other.y + self.z * other.z
         }
 
@@ -262,7 +262,7 @@ mod vector3 {
         }
 
         /// Distance between vectors
-        pub fn distance(&self, other: &Vector3) -> f64 {
+        pub fn distance(&self, other: Vector3) -> f64 {
             (*self - *other).len()
         }
 
@@ -490,7 +490,7 @@ mod vector4 {
         }
 
         /// Dot product
-        pub fn dot(&self, other: &Vector4) -> f64 {
+        pub fn dot(&self, other: Vector4) -> f64 {
             self.x * other.x + self.y * other.y + self.z * other.z + self.w * other.w
         }
 
@@ -500,7 +500,7 @@ mod vector4 {
         }
 
         /// Distance between vectors
-        pub fn distance(&self, other: &Vector4) -> f64 {
+        pub fn distance(&self, other: Vector4) -> f64 {
             (*self - *other).len()
         }
 
