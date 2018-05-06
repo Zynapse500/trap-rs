@@ -32,18 +32,36 @@ mod vector2 {
             self.x * other.x + self.y * other.y
         }
 
+        /// The squared length of vector
+        pub fn square_length(&self) -> f64 {
+            self.x * self.x + self.y * self.y
+        }
+
         /// Length of vector
         pub fn len(&self) -> f64 {
             (self.x * self.x + self.y * self.y).sqrt()
         }
 
-        /// Distance between vectors
-        pub fn distance(&self, other: Vector2) -> f64 {
-            (*self - other).len()
+
+        /// The squared distance between vectors
+        pub fn square_distance(&self, other: Vector2) -> f64 {
+            let dx = self.x - other.x;
+            let dy = self.y - other.y;
+
+            dx * dx + dy * dy
         }
 
+        /// Distance between vectors
+        pub fn distance(&self, other: Vector2) -> f64 {
+            let dx = self.x - other.x;
+            let dy = self.y - other.y;
+
+            (dx * dx + dy * dy).sqrt()
+        }
+
+
         /// Normalized unit vector
-        pub fn norm(&self) -> Vector2 {
+        pub fn normal(&self) -> Vector2 {
             *self / self.len()
         }
     }
@@ -221,6 +239,21 @@ mod vector2 {
     impl From<Vector2> for [f64; 2] {
         fn from(vector: Vector2) -> Self {
             [vector.x, vector.y]
+        }
+    }
+
+    impl From<[f32; 2]> for Vector2 {
+        fn from(array: [f32; 2]) -> Self {
+            Vector2 {
+                x: array[0] as f64,
+                y: array[1] as f64,
+            }
+        }
+    }
+
+    impl From<Vector2> for [f32; 2] {
+        fn from(vector: Vector2) -> Self {
+            [vector.x as f32, vector.y as f32]
         }
     }
 }
