@@ -1,6 +1,9 @@
+
 pub use self::matrix4::Matrix4;
 
 mod matrix4 {
+    use std::f64::consts::PI;
+
     use std::ops::Mul;
     use super::super::{
         Vector3,
@@ -10,7 +13,7 @@ mod matrix4 {
         col_mat4_mul,
         mat4_id,
         col_mat4_transform,
-        mat4_transposed
+        mat4_transposed,
     };
 
     #[derive(Copy, Clone)]
@@ -48,10 +51,43 @@ mod matrix4 {
 
         pub fn orthographic(left: f64, right: f64, top: f64, bottom: f64, near: f64, far: f64) -> Matrix4 {
             Matrix4::scaled(Vector3::new(
-                2.0 / (right - left), 2.0 / (top-bottom), 2.0 / (far - near)
+                2.0 / (right - left), 2.0 / (top - bottom), 2.0 / (far - near),
             )).translate(Vector3::new(
-                -(left+right)/2.0, -(top+bottom)/2.0, -(far+near)/2.0
+                -(left + right) / 2.0, -(top + bottom) / 2.0, -(far + near) / 2.0,
             ))
+        }
+
+
+        pub fn perspective(fov: f64, aspect: f64, near: f64, far: f64) -> Matrix4 {
+            let top = ((PI * fov / 180.0) / 2.0).tan() * near;
+            let bottom = -top;
+            let right = top * aspect;
+            let left = -right;
+
+            Matrix4 {
+                data: [
+                    [(2.0 * near) / (right - left), 0.0,                              0.0,                                 0.0],
+                    [0.0,                           (2.0 * near) / (top - bottom),   0.0,                                  0.0],
+                    [(right + left) / (right - left),(top + bottom) / (top - bottom), -(far + near) / (far - near),      -1.0],
+                    [0.0,                           0.0,                             -(2.0  * far * near) / (far - near), 0.0],
+                ]
+            }
+        }
+
+
+        pub fn look_at(eye: Vector3, target: Vector3, up: Vector3) -> Matrix4 {
+            let forward = (eye - target).normal();
+            let right = up.cross(forward).normal();
+            let up = forward.cross(right);
+
+            Matrix4 {
+                data: [
+                    [right.x, up.x, forward.x, 0.0],
+                    [right.y, up.y, forward.y, 0.0],
+                    [right.z, up.z, forward.z, 0.0],
+                    [-eye.dot(right), -eye.dot(up), -eye.dot(forward), 1.0],
+                ]
+            }
         }
 
 

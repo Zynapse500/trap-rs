@@ -300,8 +300,18 @@ mod vector3 {
         }
 
         /// Normalized unit vector
-        pub fn norm(&self) -> Vector3 {
+        pub fn normal(&self) -> Vector3 {
             *self / self.len()
+        }
+
+
+        /// Cross product
+        pub fn cross(&self, other: Vector3) -> Vector3 {
+            Vector3 {
+                x: self.y*other.z - self.z*other.y,
+                y: self.z*other.x - self.x*other.z,
+                z: self.x*other.y - self.y*other.x
+            }
         }
     }
 
@@ -494,6 +504,24 @@ mod vector3 {
             [vector.x, vector.y, vector.z]
         }
     }
+
+
+
+    impl From<[f32; 3]> for Vector3 {
+        fn from(array: [f32; 3]) -> Self {
+            Vector3 {
+                x: array[0] as f64,
+                y: array[1] as f64,
+                z: array[2] as f64,
+            }
+        }
+    }
+
+    impl From<Vector3> for [f32; 3] {
+        fn from(vector: Vector3) -> Self {
+            [vector.x as f32, vector.y as f32, vector.z as f32]
+        }
+    }
 }
 
 mod vector4 {
@@ -538,7 +566,7 @@ mod vector4 {
         }
 
         /// Normalized unit vector
-        pub fn norm(&self) -> Vector4 {
+        pub fn normal(&self) -> Vector4 {
             *self / self.len()
         }
     }
